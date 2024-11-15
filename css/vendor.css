@@ -109,6 +109,7 @@
 
 .image-holder {
   position: relative;
+  width: 100%; 
 }
 
 .image-wrapper {
@@ -125,8 +126,11 @@
   height: auto;
 }
 
+
 .product-content {
-  padding: 10px;
+  width: 100%; /* Asegura que el ancho sea igual al de image-holder */
+  padding: 10px; /* Puedes ajustar el padding según lo necesites */
+  box-sizing: border-box; /* Incluye el padding dentro del ancho del contenedor */
 }
 
 
