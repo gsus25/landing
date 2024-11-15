@@ -32,67 +32,49 @@ let sendData = () => {
 }
 
 let getData = async () => {  
-
     try {
-
-        // Realiza la petición fetch a la URL de la base de datos
-        const response = await fetch(databaseURL, {
-            method: 'GET'
-        });
-
-        // Verifica si la respuesta es exitosa
+        const response = await fetch(databaseURL, { method: 'GET' });
         if (!response.ok) {
-          alert('Hemos experimentado un error. ¡Vuelve pronto!'); // Maneja el error con un mensaje
+            alert('Hemos experimentado un error. ¡Vuelve pronto!');
+            return;
         }
 
-        // Convierte la respuesta en formato JSON
         const data = await response.json();
+        if (data != null) {
+            let playerVotes = new Map();
 
-        if(data != null) {
-
-            // Cuente el número de suscriptores registrados por fecha a partir del objeto data
-            let countSuscribers = new Map()
-
-            if (Object.keys(data).length > 0) {
-                for (let key in data) {
-
-                    let { email, saved } = data[key]
-                
-                    let date = saved.split(",")[0]
-                
-                    let count = countSuscribers.get(date) || 0;
-                    countSuscribers.set(date, count + 1)
-                }
+            // Contar votos por jugador
+            for (let key in data) {
+                let { jugador } = data[key];
+                let count = playerVotes.get(jugador) || 0;
+                playerVotes.set(jugador, count + 1);
             }
-            // END
 
-            // Genere y agregue filas de una tabla HTML para mostrar fechas y cantidades de suscriptores almacenadas 
-            if (countSuscribers.size > 0) {
+            // Ordenar los jugadores por votos en orden descendente y tomar los 5 primeros
+            let topPlayers = Array.from(playerVotes.entries())
+                .sort((a, b) => b[1] - a[1]) // Ordenar por votos (descendente)
+                .slice(0, 5); // Tomar los primeros 5 jugadores
 
-                subscribers.innerHTML = ''
-       
-                let index = 1;
-                for (let [date, count] of countSuscribers) {
-                    let rowTemplate = `
-                        <tr>
-                            <th>${index}</th>
-                            <td>${date}</td>
-                            <td>${count}</td>
-                        </tr>`
-                    subscribers.innerHTML += rowTemplate
-                    index++;
-                }
+            // Limpiar la tabla y agregar filas con los 5 jugadores más votados
+            subscribers.innerHTML = '';
+            let index = 1;
+            for (let [player, votes] of topPlayers) {
+                let rowTemplate = `
+                    <tr>
+                        <th>${index}</th>
+                        <td>${player}</td>
+                        <td>${votes}</td>
+                    </tr>`;
+                subscribers.innerHTML += rowTemplate;
+                index++;
             }
-            // END
-
         }
+    } catch (error) {
+        alert('Hemos experimentado un error. ¡Vuelve pronto!');
+    }
+};
 
-      } catch (error) {
-        // Muestra cualquier error que ocurra durante la petición
-        alert('Hemos experimentado un error. ¡Vuelve pronto!'); // Maneja el error con un mensaje
-      }
 
-}
 
 
 let ready = () => {
@@ -137,12 +119,3 @@ let loaded = () => {
 window.addEventListener("DOMContentLoaded", ready);
 window.addEventListener("load", loaded)
 
-
-function showIframe(event) {
-    event.preventDefault();
-  
-    const videoPlayer = document.querySelector('.video-player');
-    videoPlayer.innerHTML = `
-      <iframe width="560" height="315" src="https://www.youtube.com/embed/5hFd6zGkxLE?si=MJCOAardHfOb6YFz" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-    `;
-  }

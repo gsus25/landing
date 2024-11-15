@@ -978,26 +978,28 @@
 
   <section id="suscripcion" class="newsletter bg-light" style="background: url(images/pattern-bg.png) no-repeat;">
     <div class="container">
-      <div class="row justify-content-center">
-        <div class="col-md-8 py-5 my-5">
+      <div id="subs"  class="row justify-content-center">
+        <div id="subs1" class="col-md-8 py-5 my-5">
           <div class="subscribe-header text-center pb-3">
-            <h3 class="section-title text-uppercase">Sign Up for our newsletter</h3>
+            <h3 class="section-title text-uppercase">Suscríbete</h3>
           </div>
           <form id="form" class="d-flex flex-wrap gap-2">
-            <input type="text" name="email" placeholder="Your Email Addresss" class="form-control form-control-lg">
-            <button class="btn btn-dark btn-lg text-uppercase w-100">Sign Up</button>
+            <input type="text" name="email" placeholder="Tu correo electrónico" class="form-control form-control-lg">
+            <input type="text" name="nombre" placeholder="Tu nombre" class="form-control form-control-lg">
+            <input type="text" name="jugador" placeholder="Tu jugador favorito" class="form-control form-control-lg">
+            <button class="btn btn-dark btn-lg text-uppercase w-100">Suscribirse</button>
           </form>
         </div>
         
          <!-- Suscribers - START -->
-        <div class="col-md-4 py-5 my-5">
-          <h4 class="element-title text-capitalize my-3">Subscribers per Day</h4>
+        <div id="subs2" class="col-md-4 py-5 my-5">
+          <h4 class="element-title text-capitalize my-3">Top 5 Jugadores Favoritos</h4>
           <table class="table table-hover table-light table-borderless">
             <thead>
               <tr>
                 <th scope="col">#</th>
-                <th scope="col">Day</th>
-                <th scope="col">Subscribers</th>
+                <th scope="col">Jugador</th>
+                <th scope="col">Votos</th>
               </tr>
             </thead>
             <tbody id="subscribers">
@@ -1009,6 +1011,7 @@
       </div>
     </div>
   </section>
+  
 
   <footer id="footer" class="mt-5">
     <div class="container">
