@@ -107,6 +107,28 @@
   color: purple; /* Color morado */
 }
 
+.image-holder {
+  position: relative;
+}
+
+.image-wrapper {
+  position: relative;
+  background: url('https://publish-p47754-e237306.adobeaemcloud.com/content/dam/common/statics/public-content/internet/web/rm-spa-web/images/player-profile/bg.app.svg?$Mobile$');
+  background-size: cover;
+  background-position: center;
+  width: 100%;
+  height: 100%;
+}
+
+.product-image {
+  width: 100%;
+  height: auto;
+}
+
+.product-content {
+  padding: 10px;
+}
+
 
 
 
