@@ -85,6 +85,30 @@
 #cboxClose{position:absolute; top:5px; right:5px; display:block; background:url(../images/colorbox/controls.png) no-repeat top center; width:38px; height:19px; text-indent:-9999px;}
 #cboxClose:hover{background-position:bottom center;}
 
+#primera, #segunda, #tercera{
+  width: 420px;
+  height: 600px;
+}
+#escudo{
+  max-width: 250px;
+  max-height: 250px;
+}
+
+/* Asegúrate de que todo el contenido del producto tenga un color predeterminado */
+.product-content a,
+.product-content span {
+  color: black; /* Color original */
+  transition: color 0.3s ease; /* Transición suave */
+}
+
+/* Cambiar color a morado cuando el mouse pasa sobre el contenedor del producto */
+.product-item:hover .product-content a,
+.product-item:hover .product-content span {
+  color: purple; /* Color morado */
+}
+
+
+
 
 /* AOS  */
 
